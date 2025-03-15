@@ -42,9 +42,10 @@ pub fn init(allocator: Allocator, root_node: Node) !void {
         const sub_node = installing_formulaes.start(node_description, 0);
         defer sub_node.end();
 
+        const argv = [_][]const u8{ "brew", "install", formulae };
         const brew_install_run = try Child.run(.{
             .allocator = allocator,
-            .argv = &[_][]const u8{ "brew", "install", formulae },
+            .argv = &argv,
         });
         defer allocator.free(brew_install_run.stdout);
         defer allocator.free(brew_install_run.stderr);
