@@ -1,7 +1,5 @@
 const builtin = @import("builtin");
 const std = @import("std");
-const Child = std.process.Child;
-const Allocator = std.mem.Allocator;
 
 const Homebrew = @import("./steps/homebrew.zig");
 
