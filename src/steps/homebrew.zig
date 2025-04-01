@@ -12,6 +12,7 @@ pub fn init(allocator: std.mem.Allocator, root_node: std.Progress.Node) !void {
         "docker",
         "fd",
         "fish",
+        "fish-lsp",
         "fzf",
         "gh",
         "ghq",
