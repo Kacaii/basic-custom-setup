@@ -16,7 +16,7 @@ pub fn main() !void {
         _ = debug_allocator.deinit();
     };
 
-    const root_node = std.Progress.start(.{ .root_name = "Running script" });
+    const root_node = std.Progress.start(.{ .root_name = "Setting up your new virtual machine! 󱜙" });
     defer root_node.end();
 
     // Install required formulaes 

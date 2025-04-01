@@ -1,15 +1,17 @@
-const std = @import("std");
-const Child = std.process.Child;
-const Allocator = std.mem.Allocator;
-const Node = std.Progress.Node;
+//! This module handles installing all necessary formulaes (softwares)
+//! using `brew install`.
 
-pub fn init(allocator: Allocator, root_node: Node) !void {
+const std = @import("std");
+
+/// Starts the installation process.
+pub fn init(allocator: std.mem.Allocator, root_node: std.Progress.Node) !void {
     const ensure_installed = [_][]const u8{
         "bat",
         "bat-extras",
         "deno",
         "docker",
         "fd",
+        "fish",
         "fzf",
         "gh",
         "ghq",
@@ -30,6 +32,7 @@ pub fn init(allocator: Allocator, root_node: Node) !void {
         "xclip",
         "yazi",
         "zig",
+        "zoxide",
     };
 
     const installing_formulaes = root_node.start("Installing homebrew formulaes ", ensure_installed.len);
@@ -43,7 +46,7 @@ pub fn init(allocator: Allocator, root_node: Node) !void {
         defer sub_node.end();
 
         const argv = [_][]const u8{ "brew", "install", formulae };
-        const brew_install_run = try Child.run(.{
+        const brew_install_run = try std.process.Child.run(.{
             .allocator = allocator,
             .argv = &argv,
         });
