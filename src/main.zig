@@ -21,5 +21,13 @@ pub fn main() !void {
     defer root_node.end();
 
     // Install required formulaes 
-    try Homebrew.init(allocator, root_node);
+    var homebrew_thread = try std.Thread.spawn(
+        .{ .allocator = allocator },
+        Homebrew.init,
+        .{ allocator, root_node },
+    );
+
+    defer {
+        homebrew_thread.join();
+    }
 }
