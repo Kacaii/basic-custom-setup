@@ -16,7 +16,6 @@ pub fn main() !void {
 
     const root_node = std.Progress.start(.{
         .root_name = "Setting up your new virtual machine! ✨",
-        .refresh_rate_ns = 60,
     });
     defer root_node.end();
 
